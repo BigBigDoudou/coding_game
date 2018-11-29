@@ -3,7 +3,8 @@
 Challenges on [codingame.com](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
 ## Shadows of the knight - Episode 1
-[link](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
+
+> [Link to challenge](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
 ```ruby
 @w, @h = gets.split(" ").collect {|x| x.to_i} # w: width of the building, h: height of the building
