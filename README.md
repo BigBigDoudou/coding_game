@@ -40,17 +40,12 @@ end
 @height = gets.to_i # the number of cells on the Y axis
 
 @lines = []
-
 @height.times do
     line = gets.chomp # width characters, each either 0 or .
     @lines << line
 end
 
-# Write an action using puts
-# To debug: STDERR.puts "Debug messages..."
-
 @nodes = []
-
 @lines.each_with_index do |line, y|
     line.gsub(/\./, '1').chars.map(&:to_i).each_with_index do |value, x|
         @nodes << [x, y] if value.zero?
@@ -78,7 +73,7 @@ end
 end
 ```
 
-Or, with a Node class:
+**Or, with a Node class (longer but more understandable and reusable):**
 
 ```ruby
 @width = gets.to_i # the number of cells on the X axis
