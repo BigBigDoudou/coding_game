@@ -13,3 +13,4 @@
 
 * [There is no Spoon](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/there_is_no_spoon.md)
 * [Shadows of the knight](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/shadows_of_the_knight.md)
+* [Stock Exchange Losses](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/stock_exchange_losses.md)
