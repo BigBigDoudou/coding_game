@@ -1,6 +1,6 @@
-## Shadows of the knight - Episode 1
+## Stock Exchange Losses
 
-> [Link to challenge](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
+> [Link to challenge](https://www.codingame.com/ide/puzzle/stock-exchange-losses)
 
 ---
 
