@@ -10,8 +10,6 @@ To do this, you must find each (x1,y1) coordinates containing a node, and displa
 
 You lose if: You give an incorrect neighbor for a node ; You give the neighbors for an empty cell ; You compute the same node twice ; You forget to compute the neighbors of a node.
 
-![image](https://cdn-games.codingame.com/no-spoon-game/example/2.png)
-
 **Code**
 
 ```ruby
