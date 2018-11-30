@@ -2,6 +2,10 @@
 
 > [Link to challenge](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
 
+**Rules**
+    
+**Code**
+
 ```ruby
 @width = gets.to_i # the number of cells on the X axis
 @height = gets.to_i # the number of cells on the Y axis
