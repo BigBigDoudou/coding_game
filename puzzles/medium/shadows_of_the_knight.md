@@ -3,6 +3,8 @@
 
 > [Link to challenge](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
+---
+
 **Rules**
 
 Batman will look for the hostages on a given building by jumping from one window to another using his grapnel gun. Batman's goal is to jump to the window where the hostages are located in order to disarm the bombs. Unfortunately he has a limited number of jumps before the bombs go off...
@@ -14,6 +16,8 @@ Your mission is to program the device so that it indicates the location of the n
 Input // The program must first read the initialization data from standard input. Then, within an infinite loop, read the device data from the standard input and provide to the standard output the next movement instruction.
 
 Output // A single line with 2 integers X Y separated by a space character. (X, Y) represents the location of the next window Batman should jump to. X represents the index along the horizontal axis, Y represents the index along the vertical axis. (0,0) is located in the top-left corner of the building.
+
+---
 
 **Code**
 
