@@ -22,16 +22,16 @@ You lose if: You give an incorrect neighbor for a node ; You give the neighbors 
 @width = gets.to_i # the number of cells on the X axis
 @height = gets.to_i # the number of cells on the Y axis
 
-@lines = []
+lines = []
 @height.times do
   line = gets.chomp # width characters, each either 0 or .
-  @lines << line
+  lines << line
 end
 
 @nodes = []
-@lines.each_with_index do |line, y|
-  line.tr('\.', '1').chars.map(&:to_i).each_with_index do |value, x|
-    @nodes << [x, y] if value.zero?
+lines.each_with_index do |line, y|
+  line.chars.each_with_index do |value, x|
+    @nodes << [x, y] unless value == '.'
   end
 end
 
