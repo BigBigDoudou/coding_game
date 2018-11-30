@@ -1,4 +1,4 @@
-## Power of Thor - Episode 1
+## Power of Thor
 
 > [Link to challenge](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
 
