@@ -38,7 +38,7 @@ puts lost
 
 **Code Version 2**
 
-It could be done with a recursive method but the stack level is too deep for larg dataset.
+It could be done with a recursive method but the stack level is too deep for large dataset.
 
 ```ruby
 @n = gets.to_i
