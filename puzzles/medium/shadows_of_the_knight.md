@@ -1,5 +1,5 @@
 
-## Shadows of the knight - Episode 1
+## Shadows of the knight
 
 > [Link to challenge](https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1)
 
