@@ -1,4 +1,4 @@
-## There is no Spoon - Episode 1
+## There is no Spoon
 
 > [Link to challenge](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
 
