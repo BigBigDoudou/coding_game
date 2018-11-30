@@ -11,6 +11,7 @@ To do this, you must find each (x1,y1) coordinates containing a node, and displa
 You lose if: You give an incorrect neighbor for a node ; You give the neighbors for an empty cell ; You compute the same node twice ; You forget to compute the neighbors of a node.
 
 **Code Version 1**
+
 *Straight code without class*
 
 ```ruby
@@ -52,6 +53,7 @@ end
 ```
 
 **Code Version 2**
+
 *With a Node class, longer but understandable and reusable*
 
 ```ruby
