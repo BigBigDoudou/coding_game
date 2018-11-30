@@ -24,35 +24,35 @@ You lose if: You give an incorrect neighbor for a node ; You give the neighbors 
 
 @lines = []
 @height.times do
-    line = gets.chomp # width characters, each either 0 or .
-    @lines << line
+  line = gets.chomp # width characters, each either 0 or .
+  @lines << line
 end
 
 @nodes = []
 @lines.each_with_index do |line, y|
-    line.gsub(/\./, '1').chars.map(&:to_i).each_with_index do |value, x|
-        @nodes << [x, y] if value.zero?
-    end
+  line.tr('\.', '1').chars.map(&:to_i).each_with_index do |value, x|
+    @nodes << [x, y] if value.zero?
+  end
 end
 
 def right_node(coordinates)
-    @nodes
-        .select { |node| node[1] == coordinates[1] }
-        .sort_by { |node| node[0] }
-        .find { |node| node[0] > coordinates[0] }
+  @nodes
+    .select { |node| node[1] == coordinates[1] }
+    .sort_by { |node| node[0] }
+    .find { |node| node[0] > coordinates[0] }
 end
 
 def bottom_node(coordinates)
-    @nodes
-        .select { |node| node[0] == coordinates[0] }
-        .sort_by { |node| node[1] }
-        .find { |node| node[1] > coordinates[1] }
+  @nodes
+    .select { |node| node[0] == coordinates[0] }
+    .sort_by { |node| node[1] }
+    .find { |node| node[1] > coordinates[1] }
 end
 
 @nodes.each do |node|
-    right = right_node(node) || [-1, -1]
-    bottom = bottom_node(node) || [-1, -1]
-    puts "#{node[0]} #{node[1]} #{right[0]} #{right[1]} #{bottom[0]} #{bottom[1]}"
+  right = right_node(node) || [-1, -1]
+  bottom = bottom_node(node) || [-1, -1]
+  puts "#{node[0]} #{node[1]} #{right[0]} #{right[1]} #{bottom[0]} #{bottom[1]}"
 end
 ```
 
@@ -68,49 +68,49 @@ end
 
 lines = []
 @height.times do
-    line = gets.chomp # width characters, each either 0 or .
-    lines << line
+  line = gets.chomp # width characters, each either 0 or .
+  lines << line
 end
 
 class Node
-    @@nodes = []
-    attr_reader :x, :y
-    
-    def initialize(x, y)
-        @x, @y = x, y
-        @@nodes << self
-    end
-    
-    def self.coordinates
-        @@nodes.each { |node| node.coordinates }
-    end
-    
-    def coordinates
-        right = self.right ? "#{self.right.x} #{self.right.y}" : '-1 -1'
-        bottom = self.bottom ? "#{self.bottom.x} #{self.bottom.y}" : '-1 -1'
-        puts "#{@x} #{@y} #{right} #{bottom}"
-    end
-    
-    def right
-        @@nodes
-            .select { |node| node.y == @y }
-            .sort_by(&:x)
-            .find { |node| node.x > @x }
-    end
-    
-    def bottom
-        @@nodes
-            .select { |node| node.x == @x }
-            .sort_by(&:x)
-            .find { |node| node.y > @y }
-    end
+  @@nodes = []
+  attr_reader :x, :y
+  def initialize(x, y)
+    @x, @y = x, y
+    @@nodes << self
+  end
+
+  def self.coordinates
+    @@nodes.each(&:coordinates)
+  end
+
+  def coordinates
+    right = self.right ? "#{self.right.x} #{self.right.y}" : '-1 -1'
+    bottom = self.bottom ? "#{self.bottom.x} #{self.bottom.y}" : '-1 -1'
+    puts "#{@x} #{@y} #{right} #{bottom}"
+  end
+
+  def right
+    @@nodes
+      .select { |node| node.y == @y }
+      .sort_by(&:x)
+      .find { |node| node.x > @x }
+  end
+
+  def bottom
+    @@nodes
+      .select { |node| node.x == @x }
+      .sort_by(&:x)
+      .find { |node| node.y > @y }
+  end
 end
 
 lines.each_with_index do |line, y|
-    line.chars.each_with_index do |value, x|
-        Node.new(x, y) unless value == '.'
-    end
+  line.chars.each_with_index do |value, x|
+    Node.new(x, y) unless value == '.'
+  end
 end
 
 Node.coordinates
+
 ```
