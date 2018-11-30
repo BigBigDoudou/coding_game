@@ -1,6 +1,6 @@
-# coding_game
+# Coding Game Challenges
 
-Challenges on [codingame.com](https://www.codingame.com/home)
+> Challenges done on [codingame.com](https://www.codingame.com/home)
 
 ---
 
