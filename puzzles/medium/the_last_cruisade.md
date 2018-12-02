@@ -42,7 +42,7 @@ Indy will then move from the current room to the next according to the shape of 
 LEFT = [[2, 'RIGHT'], [4, 'TOP'], [6, 'RIGHT'], [10, 'TOP']]
 RIGHT = [[2, 'LEFT'], [5, 'TOP'], [6, 'LEFT'], [11, 'TOP']]
 
-# define the next position depending on the current position (pattern where Indy is) and where he comes from
+# define the next position depending on the current room's pattern and entrance
 def move(x, y, pos)
   return "#{x - 1} #{y}" if LEFT.find { |v| v.first == @rooms[y][x] }&.last == pos # => to left
   return "#{x + 1} #{y}" if RIGHT.find { |v| v.first == @rooms[y][x] }&.last == pos # => to right
