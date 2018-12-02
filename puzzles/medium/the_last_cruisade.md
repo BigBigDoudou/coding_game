@@ -44,14 +44,14 @@ RIGHT = [[2, 'LEFT'], [5, 'TOP'], [6, 'LEFT'], [11, 'TOP']]
 
 # define the next position depending on the current position (pattern where Indy is) and where he comes from
 def move(x, y, pos)
-  return "#{x - 1} #{y}" if LEFT.find { |v| v.first == @rooms[y][x] }&.last == pos
-  return "#{x + 1} #{y}" if RIGHT.find { |v| v.first == @rooms[y][x] }&.last == pos
-  "#{x} #{y + 1}"
+  return "#{x - 1} #{y}" if LEFT.find { |v| v.first == @rooms[y][x] }&.last == pos # => to left
+  return "#{x + 1} #{y}" if RIGHT.find { |v| v.first == @rooms[y][x] }&.last == pos # => to right
+  "#{x} #{y + 1}" # => to bottom
 end
 
 # loop each time Indy enter in a room and output the next position
 loop do
-  xi, yi, pos = gets.split(' ')
+  xi, yi, pos = gets.split(' ') # inputs
   puts move(xi.to_i, yi.to_i, pos)
 end
 ```
