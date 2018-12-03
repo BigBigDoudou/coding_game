@@ -19,39 +19,41 @@ You lose if: You give an incorrect neighbor for a node ; You give the neighbors 
 *Straight code without class*
 
 ```ruby
-@width = gets.to_i # the number of cells on the X axis
-@height = gets.to_i # the number of cells on the Y axis
+@width = gets.to_i # number of cells on the X axis
+@height = gets.to_i # number of cells on the Y axis
 
 lines = []
 @height.times do
-  line = gets.chomp # width characters, each either 0 or .
-  lines << line
+  lines << gets.chomp # width characters, each either 0 or .
 end
 
 @nodes = []
 lines.each_with_index do |line, y|
   line.chars.each_with_index do |value, x|
+    # add a node unless there is no node (input is .)
     @nodes << [x, y] unless value == '.'
   end
 end
 
+# find next node on the right
 def right_node(coordinates)
   @nodes
-    .select { |node| node[1] == coordinates[1] }
-    .sort_by { |node| node[0] }
-    .find { |node| node[0] > coordinates[0] }
+    .select { |node| node[1] == coordinates[1] } # nodes on the same line (y)
+    .sort_by { |node| node[0] } # sort from left to right (by x)
+    .find { |node| node[0] > coordinates[0] } # take first node found (or return nil)
 end
 
+# find next node on the bottom
 def bottom_node(coordinates)
   @nodes
-    .select { |node| node[0] == coordinates[0] }
-    .sort_by { |node| node[1] }
-    .find { |node| node[1] > coordinates[1] }
+    .select { |node| node[0] == coordinates[0] } # nodes on the same column (x)
+    .sort_by { |node| node[1] } # sort from top to bottom (by y)
+    .find { |node| node[1] > coordinates[1] } # take first node found (or return nil)
 end
 
 @nodes.each do |node|
-  right = right_node(node) || [-1, -1]
-  bottom = bottom_node(node) || [-1, -1]
+  right = right_node(node) || [-1, -1] # return [-1, -1] if right_node return nil
+  bottom = bottom_node(node) || [-1, -1] # return [-1, -1] if bottom_node return nil
   puts "#{node[0]} #{node[1]} #{right[0]} #{right[1]} #{bottom[0]} #{bottom[1]}"
 end
 ```
@@ -112,5 +114,4 @@ lines.each_with_index do |line, y|
 end
 
 Node.coordinates
-
 ```
