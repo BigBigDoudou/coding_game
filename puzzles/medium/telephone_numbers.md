@@ -28,7 +28,7 @@ substr = {}
 #
 @n.times do
      phone = gets.chomp
-     # if serial already exist (and is equal to 1), there's no effect
+     # if serial already exists (is equal to 1), there's no effect
      phone.size.times { |i| substr[phone[0..i]] = 1 }
 
 puts substr.length
