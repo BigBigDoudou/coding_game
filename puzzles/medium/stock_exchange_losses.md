@@ -21,13 +21,16 @@ for i in 0..(@n - 1)
   values << inputs[i].to_i
 end
 
+# find next index where value is greater or equal to current index value
 def next_index(values, index)
   next_index = values[index + 1..-1]
                .index { |value| value >= values[index] }
+  # if next_index is nil, there is no such value in the remainging values
   next_index.nil? ? values.length - 1 : next_index + index + 1
 end
 
 lost = values.each_index.map do |index|
+  # find minimal value in the area returned by the next_index method and minus current value
   values[index..next_index(values, index)].min - values[index]
 end.min
 
