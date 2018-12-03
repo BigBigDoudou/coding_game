@@ -23,15 +23,18 @@ y = @initial_ty
 x = @initial_tx
 
 loop do
-  vertical = @light_y - y
-  horizontal = @light_x - x
+  vertical = @light_y - y # verticaly distance
+  horizontal = @light_x - x # horizontaly distance
+  # if Thor is further horizontaly than verticaly
   move = horizontal.positive? ? 'E' : 'W' if horizontal.abs > vertical.abs
+  # if Thor is further verticaly than horizontaly
   move = vertical.positive? ? 'S' : 'N' if horizontal.abs < vertical.abs
-
+  # if distances horizontaly and verticaly are equal
   if vertical.abs == horizontal.abs
     move = (vertical.positive? ? 'S' : 'N') << (horizontal.positive? ? 'E' : 'W')
   end
 
+  # define Thor next position
   x += 1 if move.include? 'E'
   x -= 1 if move.include? 'W'
   y -= 1 if move.include? 'N'
