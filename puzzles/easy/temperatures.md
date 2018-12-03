@@ -14,6 +14,6 @@ Write a program that prints the temperature closest to 0 among input data. If tw
 
 ```ruby
 @n = gets.to_i # number of temperatures to analyse
-# output min values compared after absolute them and choosing positive over negative is they are equal
+# output min value after comparing them with absolute and choosing positive over negative if equal
 puts gets.split(' ').map(&:to_i).min_by {|t| [t.abs, -t]} || 0
 ```
