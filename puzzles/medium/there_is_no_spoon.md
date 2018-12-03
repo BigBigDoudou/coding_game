@@ -30,7 +30,7 @@ end
 @nodes = []
 lines.each_with_index do |line, y|
   line.chars.each_with_index do |value, x|
-    # add a node unless there is no node (input is .)
+    # add coordinates x and y unless there is no node (input is .)
     @nodes << [x, y] unless value == '.'
   end
 end
