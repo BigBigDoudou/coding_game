@@ -17,11 +17,15 @@ The numbers corresponding to the first digits entered will be displayed to the u
 2. Number storage optimization
 First digits which are common to the numbers should not be duplicated in the memory.
 
+Your task is to write a program that displays the number of items (which are numbers) required to store a list of telephone numbers with the structure presented above.
+
 ---
 
 **Code**
 
 ```ruby
+# NOTE: the goal is not to draw the tree but to find the number of numbers needed.
+
 @n = gets.to_i
 substr = {}
 
