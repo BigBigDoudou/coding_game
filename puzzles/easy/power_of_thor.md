@@ -17,10 +17,9 @@ At the end of the game turn, you must output the direction in which you want Tho
 **Code**
 
 ```ruby
-@light_x, @light_y, @initial_tx, @initial_ty = gets.split(' ').collect { |x| x.to_i }
+@light_x, @light_y, @initial_tx, @initial_ty = gets.split(' ').collect { |x| x.to_i } # (inputs)
 
-y = @initial_ty
-x = @initial_tx
+x, y = @initial_tx, @initial_ty
 
 loop do
   vertical = @light_y - y # verticaly distance
