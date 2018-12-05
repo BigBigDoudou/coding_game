@@ -1,6 +1,6 @@
 ## Don't panic
 
-> [Link to challenge](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
+> [Link to challenge](https://www.codingame.com/ide/puzzle/don't-panic-episode-1)
 
 ---
 
