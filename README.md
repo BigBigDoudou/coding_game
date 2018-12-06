@@ -16,4 +16,5 @@
 * [Stock Exchange Losses](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/stock_exchange_losses.md)
 * [War](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/war.md)
 * [The Last Cruisade](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/the_last_cruisade.md)
+* [ANEO Sponsored Puzzle](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/aneo_sponsored.md)
 * [Don't Panic](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/dont_panic.md)
