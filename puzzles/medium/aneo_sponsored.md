@@ -1,4 +1,4 @@
-## There is no Spoon
+## ANEO Sponsored Puzzle
 
 > [Link to challenge](https://www.codingame.com/ide/puzzle/aneo)
 
