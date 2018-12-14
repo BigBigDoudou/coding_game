@@ -23,6 +23,7 @@ Example with 1 as original number and 6 as line to put:
 **Code**
 
 ```ruby
+STDOUT.sync = true
 @r = gets.to_i # original number
 @l = gets.to_i # row to display
 
