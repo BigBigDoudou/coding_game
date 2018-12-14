@@ -4,10 +4,9 @@
 
 ---
 
-### Easy puzzles
+### Hard puzzles
 
-* [Power of Thor](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/easy/power_of_thor.md)
-* [Temperatures](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/easy/temperatures.md)
+* [The Labyrinth](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/hard/the_labyrinth.md)
 
 ### Medium puzzles
 
@@ -21,3 +20,8 @@
 * [The Last Cruisade](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/the_last_cruisade.md)
 * [There is no Spoon](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/there_is_no_spoon.md)
 * [War](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/war.md)
+
+### Easy puzzles
+
+* [Power of Thor](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/easy/power_of_thor.md)
+* [Temperatures](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/easy/temperatures.md)
