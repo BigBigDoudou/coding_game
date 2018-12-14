@@ -26,14 +26,14 @@ Your task is to write a program that displays the number of items (which are num
 ```ruby
 # NOTE: the goal is not to draw the tree but to find the number of serials needed.
 
-@n = gets.to_i
+n = gets.to_i # numer of telephone numbers
 substr = {}
 
-#
-@n.times do
-     phone = gets.chomp
-     # if serial already exists (is equal to 1), there's no effect
-     phone.size.times { |i| substr[phone[0..i]] = 1 }
+n.times do
+  phone = gets.chomp
+  # if serial already exists (is equal to 1) there is no effect
+  phone.size.times { |i| substr[phone[0..i]] = 1 }
+end
 
 puts substr.length
 ```
