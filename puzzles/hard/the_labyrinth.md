@@ -32,52 +32,58 @@ Maze format // A maze in ASCII format is provided as input. The character # repr
 
 ```ruby
 STDOUT.sync = true
-@height, @width, @countdown = gets.split(' ').collect.map(&:to_i)
-@maze = ''
-@teleport = nil
-@control = nil
-@node = nil
-@finish = nil
-@position = nil
-@passages = Array.new(@height * @width, 0)
-@open_list = []
-@closed_list = []
-@current_to_control_path = nil
-@control_to_teleport = nil
-@step_to_control = 0
-@step_to_teleport = 0
-@alarm = false
 
+#height and width of the labyrinth and time before alarm is triggered
+@height, @width, @countdown = gets.split(' ').map(&:to_i)
+@labyrinth = '' # labyrinth represented as a serial
+@teleport, @control = nil, nil # teleport and control room positions
+@node = nil # node currently analyzed in pathfinding
+@finish = nil # information of last node reached in pathfinding
+@position = nil # current position
+@passages = Array.new(@height * @width, 0) # passages on a specific node
+@open_list, @closed_list = [] # open list and closed list for pathfinding
+@current_to_control, @control_to_teleport = nil, nil # pathes from point to another
+@step_to_control, @step_to_teleport = 0, 0 # steps done in the pathes
+@alarm = false # triggered alarm
+
+# node above position
 def up(position)
   position >= @width ? position - @width : nil
 end
 
+# node below position
 def down(position)
   position + @width
 end
 
+# node left to position
 def left(position)
   (position % @width).zero? ? nil : position - 1
 end
 
+# node right to position
 def right(position)
   ((position + 1) % @width).zero? ? nil : position + 1
 end
 
-def reachable_positions(position, reachable_chars)
+# reachable positions from a position (respecting reachable_chars)
+def reachable_positions(position, allowed_chars)
   [up(position), down(position), left(position), right(position)]
-    .select { |side| side && reachable_chars.include?(@maze[side]) }
+    .select { |side| side && allowed_chars.include?(@labyrinth[side]) }
 end
 
+# next position to explore when Kirk is only discovering the labyrinth
 def next_position_to_explore
   positions = reachable_positions(@position, ['.', 'T'])
-  top_position = positions[0]
+  selected_position = positions[0]
   positions[1..-1].each do |position|
-    top_position = position if @passages[position] < @passages[top_position]
+    # go to the reachable position where Kirk has less been
+    selected_position = position if @passages[position] < @passages[selected_position]
   end
-  top_position
+  selected_position
 end
 
+# define the movement command from a position to go
 def define_movement(position)
   return 'RIGHT' if position == @position + 1
   return 'LEFT' if position == @position - 1
@@ -85,36 +91,40 @@ def define_movement(position)
   return 'DOWN' if position > @position
 end
 
-def shortest_path(char, reachable_chars)
-  reachable_positions(@node[:position], reachable_chars).each do |position|
+# find the shortest path from @node to a specific character (C, T)
+def shortest_path(target, allowed_nodes)
+  reachable_positions(@node[:position], allowed_nodes).each do |position|
+    # do nothing if position is in the closed list
     next if @closed_list.map { |node| node[:position] }.include? position
 
-    position == @maze.index(char) ? update_finish(char) : update_open_list(position, char)
+    # update finish if position is finish, else update open list
+    position == @labyrinth.index(target) ? update_finish(target) : update_open_list(position)
   end
-  return nil if @open_list.empty?
+  return nil if @open_list.empty? # stop the method if all nodes have been analyzed
 
-  update_current_node
-  shortest_path(char, reachable_chars)
+  update_current_node # update next node to analyse
+  shortest_path(target, allowed_nodes) # recall the method
 end
 
-def update_finish(char)
+# update finish node if distance found is shortest than the previous one
+def update_finish(position)
   return nil if @finish && @node[:distance] + 1 >= @finish[:distance]
 
   @finish = {
-    position: @maze.index(char),
+    position: @labyrinth.index(position),
     parent: @node,
     distance: @node[:distance] + 1
   }
 end
 
-def update_open_list(position, char)
+# define if node should be updated or created
+def update_open_list(position)
   node = @open_list.find { |n| n[:position] == position }
-  node ? update_node(node) : create_node(position, char)
+  node ? update_node(node) : create_node(position)
 end
 
-def create_node(position, char)
-  return nil if position == @maze.index(char)
-
+# add node in the open list
+def create_node(position)
   @open_list << {
     position: position,
     parent: @node,
@@ -122,6 +132,7 @@ def create_node(position, char)
   }
 end
 
+# update node in the open list if distance found is shortest than the previous one
 def update_node(node)
   return nil if @node[:distance] + 1 >= node[:distance]
 
@@ -129,11 +140,13 @@ def update_node(node)
   node[:distance] = @node[:distance] + 1
 end
 
+# update node to analyze
 def update_current_node
   @node = @open_list.shift
   @closed_list << @node
 end
 
+# generate path after path has been found by browding parents from finish
 def generate_path
   node = @finish
   steps = []
@@ -144,6 +157,7 @@ def generate_path
   steps.reverse
 end
 
+# clean pathfinder variables
 def clean_pathfinder
   @finish = nil
   @open_list = []
@@ -151,16 +165,14 @@ def clean_pathfinder
 end
 
 loop do
-  y, x = gets.split(' ').collect.map(&:to_i)
-  @position = y * @width + x
-  @passages[@position] += 1
-  @alarm = true if @position == @maze.index('C')
-  @maze = ''
-  @height.times do
-    @maze << gets.chomp
-  end
-  @teleport ||= @maze.index('T')
-  @control ||= @maze.index('C')
+  y, x = gets.split(' ').map(&:to_i) # y as row and x as column
+  @position = y * @width + x # define current position
+  @passages[@position] += 1 # add a passage on current position
+  @alarm = true if @position == @labyrinth.index('C') # trigger alarm if enter control room
+  @labyrinth = '' # empty labyrinth
+  @height.times { @labyrinth << gets.chomp } # populate labyrinth (gets.chomp = row)
+  @teleport ||= @labyrinth.index('T') # define teleport position
+  @control ||= @labyrinth.index('C') # define control position
   @node ||= { position: @teleport, parent: nil, distance: 0 }
 
   # while no valid path has been found between control room and teleport
@@ -181,13 +193,13 @@ loop do
   # if a valid path has been found between control room and teleport
   # but no path has been found between current position room and control room
   # try to find a path
-  if @control_to_teleport && @current_to_control_path.nil?
+  if @control_to_teleport && @current_to_control.nil?
     clean_pathfinder
     @node = { position: @position, parent: nil, distance: 0 }
     @closed_list << @node
     shortest_path('C', ['T', '.', 'C'])
     if @finish
-      @current_to_control_path = generate_path
+      @current_to_control = generate_path
     else
       next_position = next_position_to_explore(['T', '.'])
     end
@@ -197,8 +209,8 @@ loop do
   # (meaning a valid path has been found between control room and teleport)
   # and player is not in the control room
   # => reach control room
-  if @current_to_control_path && !@alarm
-    next_position = @current_to_control_path[@step_to_control + 1]
+  if @current_to_control && !@alarm
+    next_position = @current_to_control[@step_to_control + 1]
     @step_to_control += 1
   end
 
