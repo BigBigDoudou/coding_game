@@ -13,7 +13,6 @@ A finance company is carrying out a study on the worst stock investments and wou
 **Code Version 1**
 
 ```ruby
-STDOUT.sync = true
 @n = gets.to_i
 inputs = gets.split(' ')
 
