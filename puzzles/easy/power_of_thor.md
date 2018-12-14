@@ -17,23 +17,34 @@ At the end of the game turn, you must output the direction in which you want Tho
 **Code**
 
 ```ruby
-@light_x, @light_y, @initial_tx, @initial_ty = gets.split(' ').collect { |x| x.to_i } # (inputs)
+# light_x: the X position of the light of power
+# light_y: the Y position of the light of power
+# initial_tx: Thor's starting X position
+# initial_ty: Thor's starting Y position
+@light_x, @light_y, @initial_tx, @initial_ty = gets.split(' ').map(&:to_i)
 
-x, y = @initial_tx, @initial_ty
+y = @initial_ty
+x = @initial_tx
 
 loop do
-  vertical = @light_y - y # verticaly distance
-  horizontal = @light_x - x # horizontaly distance
-  # if Thor is further horizontaly than verticaly
+  remaining_turns = gets.to_i # remaining amount of turns Thor can move (unused => specs input)
+
+  # define vertical and horizontal distances
+  vertical = @light_y - y
+  horizontal = @light_x - x
+
+  # if thor is most far on the horizontal axe
   move = horizontal.positive? ? 'E' : 'W' if horizontal.abs > vertical.abs
-  # if Thor is further verticaly than horizontaly
+
+  # if thor is most far on the vertical axe
   move = vertical.positive? ? 'S' : 'N' if horizontal.abs < vertical.abs
-  # if distances horizontaly and verticaly are equal
+
+  # if distances on two axes are equal
   if vertical.abs == horizontal.abs
     move = (vertical.positive? ? 'S' : 'N') << (horizontal.positive? ? 'E' : 'W')
   end
 
-  # define Thor next position
+  # define thor next position
   x += 1 if move.include? 'E'
   x -= 1 if move.include? 'W'
   y -= 1 if move.include? 'N'
