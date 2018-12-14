@@ -29,29 +29,35 @@ Indy will then move from the current room to the next according to the shape of 
 **Code**
 
 ```ruby
-# width and height of the labyrinth (input)
 @w, @h = gets.split(' ').collect(&:to_i)
-# array to save rooms
 @rooms = []
-# generate rooms (input)
 @h.times { @rooms << gets.chomp.split(' ').map(&:to_i) }
-# exit (input)
 @ex = gets.to_i
+@x, @y, @position = nil
+# pattern numbers that send to left or right depending where Indy comes from
+@left = [[2, 'RIGHT'], [4, 'TOP'], [6, 'RIGHT'], [10, 'TOP']]
+@right = [[2, 'LEFT'], [5, 'TOP'], [6, 'LEFT'], [11, 'TOP']]
 
-# pattern numbers that send to left or right, depending where Indy comes from
-LEFT = [[2, 'RIGHT'], [4, 'TOP'], [6, 'RIGHT'], [10, 'TOP']]
-RIGHT = [[2, 'LEFT'], [5, 'TOP'], [6, 'LEFT'], [11, 'TOP']]
-
-# define the next position depending on the current room's pattern and entrance
-def move(x, y, pos)
-  return "#{x - 1} #{y}" if LEFT.find { |v| v.first == @rooms[y][x] }&.last == pos # => to left
-  return "#{x + 1} #{y}" if RIGHT.find { |v| v.first == @rooms[y][x] }&.last == pos # => to right
-  "#{x} #{y + 1}" # => to bottom
+# define if Indy is coming from a specific side
+def side?(side)
+  side.find { |value| value.first == @rooms[@y][@x] }&.last == @position
 end
 
-# loop each time Indy enter in a room and output the next position
+# define the next position depending on the current room's pattern and entrance
+def move
+  if side?(@left)
+    "#{@x - 1} #{@y}"
+  elsif side?(@right)
+    "#{@x + 1} #{@y}"
+  else
+    "#{@x} #{@y + 1}"
+  end
+end
+
+# loop each time Indy enter in a new room and output the next position
 loop do
-  xi, yi, pos = gets.split(' ') # inputs
-  puts move(xi.to_i, yi.to_i, pos)
+  @x, @y, @position = gets.split(' ')
+  @x, @y = @x.to_i, @y.to_i
+  puts move
 end
 ```
