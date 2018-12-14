@@ -33,10 +33,10 @@ STDOUT.sync = true
 # n: total number of nodes in the level including the gateways
 # l: number of links
 # e: number of exit gateways
-n, l, e = gets.split(' ').collect.map(&:to_i)
+n, l, e = gets.split(' ').map(&:to_i)
 
 links = []
-l.times { links << gets.split(' ').collect.map(&:to_i) }
+l.times { links << gets.split(' ').map(&:to_i) }
 
 gateways = []
 e.times { gateways << gets.to_i }
