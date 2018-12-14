@@ -29,6 +29,7 @@ Then the Skynet agent moves from one Node to another accessible Node.
 **Code**
 
 ```ruby
+STDOUT.sync = true
 # n: total number of nodes in the level including the gateways
 # l: number of links
 # e: number of exit gateways
