@@ -31,21 +31,17 @@ When a player wins a battle, they put back the cards at the bottom of their deck
 **Code**
 
 ```ruby
-decks = [] # decks of players
+decks = [[], []]
 
-decks[0] = [] # deck for player 1
 @n = gets.to_i # the number of cards for player 1
-@n.times do
-  decks[0] << gets.chomp # the n cards of player 1
-end
+@n.times { decks[0] << gets.chomp } # player 1 cards
 
-decks[1] = [] # deck for player 2
 @m = gets.to_i # the number of cards for player 2
-@m.times do
-  decks[1] << gets.chomp # the m cards of player 2
-end
+@m.times { decks[1] << gets.chomp } # player 2 cards
 
-# dispatch cards between players, depending of the winner
+RANK = [*(2..10).map(&:to_s), 'J', 'Q', 'K', 'A']
+
+# dispatch cards between players depending of the winner
 def dispatch(decks, player, index)
   decks[player].push(*decks[0][0..index])
   decks[player].push(*decks[1][0..index])
@@ -68,7 +64,7 @@ until decks[0].empty? || decks[1].empty? || pat
   if decks[0][index].chop == decks[1][index].chop
     # increase the index by 4 because 3 cards are put aside
     decks[0].count > 4 && decks[1].count > 4 ? index += 4 : pat = true
-    # skip following part and rerun loop
+    # skip following part and return loop
     next
   end
   # if player 1 card is stronger than player 2 card
