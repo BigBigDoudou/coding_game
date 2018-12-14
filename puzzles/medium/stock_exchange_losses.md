@@ -13,6 +13,7 @@ A finance company is carrying out a study on the worst stock investments and wou
 **Code Version 1**
 
 ```ruby
+STDOUT.sync = true
 @n = gets.to_i
 inputs = gets.split(' ')
 
@@ -41,6 +42,7 @@ puts lost
 It could be done with a recursive method but the stack level is too deep for large dataset.
 
 ```ruby
+STDOUT.sync = true
 @n = gets.to_i
 inputs = gets.split(' ')
 
