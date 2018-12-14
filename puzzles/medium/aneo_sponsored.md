@@ -19,6 +19,7 @@ Your vehicle enters the zone directly at the speed programmed on the cruise cont
 **Code**
 
 ```ruby
+STDOUT.sync = true
 @max_speed = gets.to_i # (input)
 @light_count = gets.to_i # (input)
 
