@@ -11,11 +11,13 @@
 
 ### Medium puzzles
 
-* [There is no Spoon](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/there_is_no_spoon.md)
-* [Shadows of the Knight](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/shadows_of_the_knight.md)
-* [Stock Exchange Losses](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/stock_exchange_losses.md)
-* [War](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/war.md)
-* [The Last Cruisade](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/the_last_cruisade.md)
 * [ANEO Sponsored Puzzle](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/aneo_sponsored.md)
-* [Skynet Revolution](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/skynet_revolution.md)
+* [Conway Sequence](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/conway_sequence.md)
 * [Don't Panic](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/dont_panic.md)
+* [Shadows of the Knight](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/shadows_of_the_knight.md)
+* [Skynet Revolution](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/skynet_revolution.md)
+* [Stock Exchange Losses](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/stock_exchange_losses.md)
+* [Telephone numbers](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/telephone_numbers.md)
+* [The Last Cruisade](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/the_last_cruisade.md)
+* [There is no Spoon](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/there_is_no_spoon.md)
+* [War](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/war.md)
