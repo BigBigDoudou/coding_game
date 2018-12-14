@@ -17,20 +17,17 @@ A finance company is carrying out a study on the worst stock investments and wou
 inputs = gets.split(' ')
 
 values = []
-for i in 0..(@n - 1)
-  values << inputs[i].to_i
-end
+(0..@n - 1).each { |i| values << inputs[i].to_i }
 
 # find next index where value is greater or equal to current index value
 def next_index(values, index)
   next_index = values[index + 1..-1]
                .index { |value| value >= values[index] }
-  # if next_index is nil, there is no such value in the remainging values
   next_index.nil? ? values.length - 1 : next_index + index + 1
 end
 
 lost = values.each_index.map do |index|
-  # find minimal value in the area returned by the next_index method and minus current value
+  # find minimal value in the area returned by next_index method and minus current value
   values[index..next_index(values, index)].min - values[index]
 end.min
 
@@ -48,9 +45,7 @@ It could be done with a recursive method but the stack level is too deep for lar
 inputs = gets.split(' ')
 
 values = []
-for i in 0..(@n - 1)
-    values << inputs[i].to_i
-end
+(0..@n - 1).each { |i| values << inputs[i].to_i }
 
 def accumulated_losses(losses, value, index, values)
   return losses if index == values.length - 1 ||
@@ -61,7 +56,7 @@ def accumulated_losses(losses, value, index, values)
 end
 
 lost = values.each_index.map do |index|
-         accumulated_losses(0, values[index], index, values)
+  accumulated_losses(0, values[index], index, values)
 end.min
 
 puts lost
