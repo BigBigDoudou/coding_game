@@ -36,6 +36,7 @@ When a clone reaches the location of the exit, it is saved and disappears from t
 **Code**
 
 ```ruby
+STDOUT.sync = true
 # nb_floors: number of floors (input)
 # width: width of the area (input)
 # nb_rounds: maximum number of rounds (input)
