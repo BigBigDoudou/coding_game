@@ -46,12 +46,12 @@ STDOUT.sync = true
 # nb_additional_elevators: ignore (always zero) (input)
 # nb_elevators: number of elevators (input)
 @nb_floors, @width, @nb_rounds, @exit_floor, @exit_pos, @nb_total_clones,
-@nb_additional_elevators, @nb_elevators = gets.split(' ').collect(&:to_i)
+@nb_additional_elevators, @nb_elevators = gets.split(' ').map(&:to_i)
 
 elevators = []
 @nb_elevators.times do
   # floor + position of the elevator
-  elevators << gets.split(' ').collect(&:to_i)
+  elevators << gets.split(' ').map(&:to_i)
 end
 
 loop do
