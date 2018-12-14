@@ -24,7 +24,7 @@ Your vehicle enters the zone directly at the speed programmed on the cruise cont
 
 @lights = []
 @light_count.times do
-  @lights << gets.split(' ').collect(&:to_i) # (input)
+  @lights << gets.split(' ').map(&:to_i) # (input)
 end
 
 def best_speed(speed)
