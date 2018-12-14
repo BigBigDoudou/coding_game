@@ -29,22 +29,23 @@ Then the Skynet agent moves from one Node to another accessible Node.
 **Code**
 
 ```ruby
-# n: number of nodes including gateways
+# n: total number of nodes in the level including the gateways
 # l: number of links
 # e: number of exit gateways
-@n, @l, @e = gets.split(' ').collect.map(&:to_i)
+n, l, e = gets.split(' ').collect.map(&:to_i)
 
-@links = []
-@l.times { @links << gets.split(' ').collect.map(&:to_i) }
+links = []
+l.times { links << gets.split(' ').collect.map(&:to_i) }
 
-@gateways = []
-@e.times { @gateways << gets.to_i }
+gateways = []
+e.times { gateways << gets.to_i }
 
 loop do
   si = gets.to_i # index of the current node
-  links = @links.select { |link| link.include? si }
-  selected_link = links.find { |link| @gateways.include?((link - [si])[0]) } ||
-                  links.first
+  reachable_links = links.select { |link| link.include? si }
+  # if link links to gateway, sever it, else sever first link found
+  selected_link = reachable_links.find { |link| gateways.include?((link - [si])[0]) } ||
+                  reachable_links.first
   puts selected_link.join(' ')
 end
 ```
