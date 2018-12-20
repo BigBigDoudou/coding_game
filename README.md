@@ -8,6 +8,8 @@
 
 * [The Labyrinth](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/hard/the_labyrinth.md)
 
+---
+
 ### Medium puzzles
 
 * [ANEO Sponsored Puzzle](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/aneo_sponsored.md)
@@ -20,6 +22,8 @@
 * [The Last Cruisade](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/the_last_cruisade.md)
 * [There is no Spoon](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/there_is_no_spoon.md)
 * [War](https://github.com/BigBigDoudou/coding_game/blob/master/puzzles/medium/war.md)
+
+---
 
 ### Easy puzzles
 
