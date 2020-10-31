@@ -1,10 +1,4 @@
-## Power of Thor
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
-
----
-
-**Rules**
+# Power of Thor
 
 Your program must allow Thor to reach the light of power. Thor moves on a map which is 40 wide by 18 high. Note that the coordinates (X and Y) start at the top left! This means the most top left cell has the coordinates "X=0,Y=0" and the most bottom right one has the coordinates "X=39,Y=17".
 
@@ -12,9 +6,11 @@ Once the program starts you are given: the variable lightX: the X position of th
 
 At the end of the game turn, you must output the direction in which you want Thor to go among.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/power-of-thor-episode-1)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 STDOUT.sync = true
@@ -34,22 +30,31 @@ loop do
   vertical = @light_y - y
   horizontal = @light_x - x
 
-  # if thor is most far on the horizontal axe
-  move = horizontal.positive? ? 'E' : 'W' if horizontal.abs > vertical.abs
-
-  # if thor is most far on the vertical axe
-  move = vertical.positive? ? 'S' : 'N' if horizontal.abs < vertical.abs
-
-  # if distances on two axes are equal
-  if vertical.abs == horizontal.abs
-    move = (vertical.positive? ? 'S' : 'N') << (horizontal.positive? ? 'E' : 'W')
-  end
+  move =
+    if horizontal.abs > vertical.abs
+      # move east or west
+      horizontal.positive? ? 'E' : 'W'
+    elsif horizontal.abs < vertical.abs
+      # move south or north
+      vertical.positive? ? 'S' : 'N'
+    else
+      # move diagonally
+      (vertical.positive? ? 'S' : 'N') << (horizontal.positive? ? 'E' : 'W')
+    end
 
   # define thor next position
-  x += 1 if move.include? 'E'
-  x -= 1 if move.include? 'W'
-  y -= 1 if move.include? 'N'
-  y += 1 if move.include? 'S'
+  # define thor next position
+  if move.include? 'E'
+    x += 1
+  elsif move.include? 'W' # do not test if include 'E'
+    x -= 1
+  end
+
+  if move.include? 'N'
+    y -= 1
+  elsif move.include? 'S' # do not test if include 'N'
+    y += 1
+  end
 
   puts move
 end

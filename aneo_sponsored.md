@@ -1,10 +1,4 @@
-## ANEO Sponsored Puzzle
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/aneo)
-
----
-
-**Rules**
+# ANEO Sponsored Puzzle
 
 You enter a section of road and you plan to rest entirely on your cruise control to cross the area without having to stop or slow down.
 
@@ -14,9 +8,11 @@ Warning: You can not cross a traffic light the second it turns red !
 
 Your vehicle enters the zone directly at the speed programmed on the cruise control which ensures that it does not change anymore.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/aneo)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 @max_speed = gets.to_i # (input)

@@ -1,11 +1,4 @@
-
-## The Last Cruisade
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/the-last-crusade-episode-1)
-
----
-
-**Rules**
+# The Last Cruisade
 
 The tunnel consists of a patchwork of square rooms of different types.The rooms can be accessed and activated by computer using an ancient RS232 serial port (because Mayans aren't very technologically advanced, as is to be expected...).
 
@@ -24,9 +17,11 @@ You receive Indy's current position
 Then you specify what Indy's position will be next turn.
 Indy will then move from the current room to the next according to the shape of the current room.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/the-last-crusade-episode-1)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 STDOUT.sync = true

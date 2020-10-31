@@ -1,10 +1,5 @@
-## Conway Sequence
+# Conway Sequence
 
-> [Link to challenge](https://www.codingame.com/ide/puzzle/conway-sequence)
-
----
-
-**Rules**
 You mission is to print a specific line of the Conway sequence with a specific original number.
 
 Example with 1 as original number and 6 as line to put:
@@ -18,9 +13,11 @@ Example with 1 as original number and 6 as line to put:
 3 1 2 2 1 1 <= puts
 ```
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/conway-sequence)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 @r = gets.to_i # original number

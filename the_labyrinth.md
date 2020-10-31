@@ -1,12 +1,4 @@
-
-
-## The Labyrinth
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/the-labyrinth)
-
----
-
-**Rules**
+# The Labyrinth
 
 Once teleported inside the structure, your mission is to:
 * find the control room from which you will be able to deactivate the tracker beam;
@@ -26,14 +18,16 @@ You will be successful if you reach the control room and get back to the startin
 
 Maze format // A maze in ASCII format is provided as input. The character # represents a wall, the letter . represents a hollow space, the letter T represents your starting position, the letter C represents the control room and the character ? represents a cell that you have not scanned yet.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/the-labyrinth)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 STDOUT.sync = true
 
-#height and width of the labyrinth and time before alarm is triggered
+# height and width of the labyrinth and time before alarm is triggered
 @height, @width, @countdown = gets.split(' ').map(&:to_i)
 @labyrinth = '' # labyrinth represented as a serial
 @teleport, @control = nil, nil # teleport and control room positions
@@ -48,7 +42,7 @@ STDOUT.sync = true
 
 # node above position
 def up(position)
-  position >= @width ? position - @width : nil
+  position - @width if position >= @width
 end
 
 # node below position
@@ -58,49 +52,47 @@ end
 
 # node left to position
 def left(position)
-  (position % @width).zero? ? nil : position - 1
+  position - 1 if (position % @width).positive?
 end
 
 # node right to position
 def right(position)
-  ((position + 1) % @width).zero? ? nil : position + 1
+  position + 1 if ((position + 1) % @width).positive?
 end
 
 # reachable positions from a position (respecting reachable_chars)
 def reachable_positions(position, allowed_chars)
-  [up(position), down(position), left(position), right(position)]
-    .select { |side| side && allowed_chars.include?(@labyrinth[side]) }
+  positions = [up(position), down(position), left(position), right(position)]
+  positions.compact!
+  positions.select { |side| allowed_chars.include?(@labyrinth[side]) }
 end
 
 # next position to explore when Kirk is only discovering the labyrinth
 def next_position_to_explore
   positions = reachable_positions(@position, ['.', 'T'])
-  selected_position = positions[0]
-  positions[1..-1].each do |position|
-    # go to the reachable position where Kirk has less been
-    selected_position = position if @passages[position] < @passages[selected_position]
-  end
-  selected_position
+  # go to the reachable position where Kirk has less been
+  positions.min_by { |position| @passages[position] }
 end
 
 # define the movement command from a position to go
 def define_movement(position)
   return 'RIGHT' if position == @position + 1
   return 'LEFT' if position == @position - 1
-  return 'UP' if position < @position
-  return 'DOWN' if position > @position
+
+  position < @position ? 'UP' : 'DOWN'
 end
 
 # find the shortest path from @node to a specific character (C, T)
 def shortest_path(target, allowed_nodes)
-  reachable_positions(@node[:position], allowed_nodes).each do |position|
+  positions = reachable_positions(@node[:position], allowed_nodes)
+  positions.each do |position|
     # do nothing if position is in the closed list
     next if @closed_list.map { |node| node[:position] }.include? position
 
     # update finish if position is finish, else update open list
     position == @labyrinth.index(target) ? update_finish(target) : update_open_list(position)
   end
-  return nil if @open_list.empty? # stop the method if all nodes have been analyzed
+  return if @open_list.empty? # stop the method if all nodes have been analyzed
 
   update_current_node # update next node to analyse
   shortest_path(target, allowed_nodes) # recall the method
@@ -108,7 +100,7 @@ end
 
 # update finish node if distance found is shortest than the previous one
 def update_finish(position)
-  return nil if @finish && @node[:distance] + 1 >= @finish[:distance]
+  return if @finish && @node[:distance] + 1 >= @finish[:distance]
 
   @finish = {
     position: @labyrinth.index(position),
@@ -134,7 +126,7 @@ end
 
 # update node in the open list if distance found is shortest than the previous one
 def update_node(node)
-  return nil if @node[:distance] + 1 >= node[:distance]
+  return if @node[:distance] + 1 >= node[:distance]
 
   node[:parent] = @node
   node[:distance] = @node[:distance] + 1
@@ -223,4 +215,6 @@ loop do
 
   puts define_movement(next_position)
 end
+
+
 ```

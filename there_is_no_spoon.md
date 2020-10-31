@@ -1,10 +1,4 @@
-## There is no Spoon
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
-
----
-
-**Rules**
+# There is no Spoon
 
 The game is played on a rectangular grid with a given size. Some cells contain power nodes. The rest of the cells are empty. The goal is to find, when they exist, the horizontal and vertical neighbors of each node.
 
@@ -12,11 +6,11 @@ To do this, you must find each (x1,y1) coordinates containing a node, and displa
 
 You lose if: You give an incorrect neighbor for a node ; You give the neighbors for an empty cell ; You compute the same node twice ; You forget to compute the neighbors of a node.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/there-is-no-spoon-episode-1)
+
 ---
 
-**Code Version 1**
-
-*Straight code without class*
+### ruby (1)
 
 ```ruby
 @width = gets.to_i # number of cells on the X axis
@@ -56,11 +50,7 @@ end
 end
 ```
 
----
-
-**Code Version 2**
-
-*With a Node class, longer but understandable and reusable*
+### ruby (2)
 
 ```ruby
 @width = gets.to_i # the number of cells on the X axis
@@ -109,4 +99,101 @@ lines.each_with_index do |line, y|
 end
 
 Node.coordinates
+```
+
+### go
+
+```go
+package main
+
+import "fmt"
+import "os"
+import "bufio"
+import "strings"
+
+type Node struct {
+	isNode               bool
+	x, y, rx, ry, bx, by int
+}
+
+type Nodes []Node
+
+func (nodes *Nodes) Push(node Node) Nodes {
+	*nodes = append(*nodes, node)
+	return *nodes
+}
+
+// find the first right node to given coordinates
+func (nodes Nodes) Right(x, y int) (rx, ry int) {
+	closest := 0
+	rx = -1
+	ry = -1
+	for _, node := range nodes {
+		if node.isNode && node.y == y && node.x > x {
+			distance := node.x - x
+			if closest == 0 || distance < closest {
+				closest = distance
+				rx = node.x
+				ry = node.y
+			}
+		}
+	}
+	return rx, ry
+}
+
+// find the first bottom node to given coordinates
+func (nodes Nodes) Bottom(x, y int) (bx, by int) {
+	closest := 0
+	bx = -1
+	by = -1
+	for _, node := range nodes {
+		if node.isNode && node.x == x && node.y > y {
+			distance := node.y - y
+			if closest == 0 || distance < closest {
+				closest = distance
+				bx = node.x
+				by = node.y
+			}
+		}
+	}
+	return bx, by
+}
+
+func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Buffer(make([]byte, 1000000), 1000000)
+
+	// width: the number of cells on the X axis
+	var width int
+	scanner.Scan()
+	fmt.Sscan(scanner.Text(), &width)
+
+	// height: the number of cells on the Y axis
+	var height int
+	scanner.Scan()
+	fmt.Sscan(scanner.Text(), &height)
+
+	// read lines from inputs
+	// and create node for each value
+	// and push it to nodes array
+	nodes := Nodes{}
+	for y := 0; y < height; y++ {
+		scanner.Scan()
+		line := scanner.Text() // width characters, each either 0 or .
+		fmt.Fprintln(os.Stderr, line)
+		values := strings.Split(line, "")
+		for x, v := range values {
+			node := Node{v == "0", x, y, -1, -1, -1, -1}
+			nodes.Push(node)
+		}
+	}
+
+	for _, node := range nodes {
+		if node.isNode {
+			rx, ry := nodes.Right(node.x, node.y)
+			bx, by := nodes.Bottom(node.x, node.y)
+			fmt.Println(node.x, node.y, rx, ry, bx, by)
+		}
+	}
+}
 ```

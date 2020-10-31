@@ -1,10 +1,4 @@
-## Don't panic
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/don't-panic-episode-1)
-
----
-
-**Rules**
+# Don't panic
 
 You need to help Marvin and his clones (or is it the other way round?) reach the exit in order to help them escape the inside of the Infinite Improbability Drive.
 
@@ -31,9 +25,11 @@ If a clone is blocked in front of an elevator, the elevator can no longer be use
 
 When a clone reaches the location of the exit, it is saved and disappears from the area.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/don't-panic-episode-1)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 STDOUT.sync = true
@@ -77,4 +73,104 @@ loop do
 
   puts action
 end
+```
+
+### go
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var nbFloors, width, nbRounds, exitFloor, exitPos, nbTotalClones, nbAdditionalElevators, nbElevators int
+	fmt.Scan(&nbFloors, &width, &nbRounds, &exitFloor, &exitPos, &nbTotalClones, &nbAdditionalElevators, &nbElevators)
+
+	elevators := make([]int, nbFloors)
+
+	for i := 0; i < nbElevators; i++ {
+	  var elevatorFloor, elevatorPos int
+		fmt.Scan(&elevatorFloor, &elevatorPos)
+		elevators[elevatorFloor] = elevatorPos
+	}
+
+	for {
+		var cloneFloor, clonePos int
+		var direction string
+		fmt.Scan(&cloneFloor, &clonePos, &direction)
+
+		action := "WAIT"
+
+    // if direction is "NONE", keep waiting
+		if direction != "NONE" {
+      // if leader is on the exit floor
+			if cloneFloor == exitFloor {
+        // if leader is moving away from the exit position
+				if direction == "RIGHT" && clonePos > exitPos ||
+					direction == "LEFT" && clonePos < exitPos {
+					action = "BLOCK"
+				}
+			} else {
+        // find the elevator position
+				elevatorPos := elevators[cloneFloor]
+        // if leader is on a floor with elevator
+				if elevatorPos > 0 {
+          // if leader is moving away from the elevator position
+          if direction == "RIGHT" && clonePos > elevatorPos ||
+					  direction == "LEFT" && clonePos < elevatorPos {
+					  action = "BLOCK"
+          }
+        // if leader is reaching the limits of the map
+				} else if clonePos >= width-1 || clonePos <= 0 {
+					action = "BLOCK"
+				}
+			}
+		}
+
+		fmt.Println(action)
+	}
+}
+```
+
+### javascript
+
+```javascript
+var inputs = readline().split(' ');
+const nbFloors = parseInt(inputs[0]); // number of floors
+const width = parseInt(inputs[1]); // width of the area
+const nbRounds = parseInt(inputs[2]); // maximum number of rounds
+const exitFloor = parseInt(inputs[3]); // floor on which the exit is found
+const exitPos = parseInt(inputs[4]); // position of the exit on its floor
+const nbTotalClones = parseInt(inputs[5]); // number of generated clones
+const nbAdditionalElevators = parseInt(inputs[6]); // ignore (always zero)
+const nbElevators = parseInt(inputs[7]); // number of elevators
+const elevators = []
+for (let i = 0; i < nbElevators; i++) {
+    var inputs = readline().split(' ');
+    const elevatorFloor = parseInt(inputs[0]); // floor on which this elevator is found
+    const elevatorPos = parseInt(inputs[1]); // position of the elevator on its floor
+    elevators[elevatorFloor] = elevatorPos
+}
+
+// game loop
+while (true) {
+    var inputs = readline().split(' ');
+    const cloneFloor = parseInt(inputs[0]); // floor of the leading clone
+    const clonePos = parseInt(inputs[1]); // position of the leading clone on its floor
+    const direction = inputs[2]; // direction of the leading clone: LEFT or RIGHT
+
+    // Write an action using console.log()
+    // To debug: console.error('Debug messages...');
+
+    const pos = elevators[cloneFloor] || exitPos
+
+    const action = (
+        clonePos == 0 || clonePos == width - 1 ||
+        (direction == 'LEFT' && clonePos < pos) ||
+        (direction == 'RIGHT' && clonePos > pos)
+    ) ? 'BLOCK' : 'WAIT'
+
+    console.log(action); // WAIT or BLOCK
+
+}
 ```

@@ -1,10 +1,4 @@
-## Skynet Revolution
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/skynet-revolution-episode-1)
-
----
-
-**Rules**
+# Skynet Revolution
 
 Your virus has caused a backdoor to open on the Skynet network enabling you to send new instructions in real time.
 
@@ -24,9 +18,11 @@ Each game turn:
 First off, you sever one of the given links in the network.
 Then the Skynet agent moves from one Node to another accessible Node.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/skynet-revolution-episode-1)
+
 ---
 
-**Code**
+### ruby
 
 ```ruby
 STDOUT.sync = true

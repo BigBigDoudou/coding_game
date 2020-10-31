@@ -1,11 +1,4 @@
-
-## Telephone numbers
-
-> [Link to challenge](https://www.codingame.com/ide/puzzle/telephone-numbers)
-
----
-
-**Rules**
+# Telephone numbers
 
 By joining the iDroid smartphone development team, you have been given the responsibility of developing the contact manager. Obviously, what you were not told is that there are strong technical constraints for iDroid: the system doesn’t have much memory and the processor is as fast as a Cyrix from the 90s...
 
@@ -19,9 +12,11 @@ First digits which are common to the numbers should not be duplicated in the mem
 
 Your task is to write a program that displays the number of items (which are numbers) required to store a list of telephone numbers with the structure presented above.
 
+[Link to challenge](https://www.codingame.com/ide/puzzle/telephone-numbers)
+
 ---
 
-**Code**
+### rules
 
 ```ruby
 # NOTE: the goal is not to draw the tree but to find the number of serials needed.
