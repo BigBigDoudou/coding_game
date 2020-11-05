@@ -32,7 +32,6 @@ When a clone reaches the location of the exit, it is saved and disappears from t
 ### ruby
 
 ```ruby
-STDOUT.sync = true
 # nb_floors: number of floors (input)
 # width: width of the area (input)
 # nb_rounds: maximum number of rounds (input)
@@ -44,10 +43,9 @@ STDOUT.sync = true
 @nb_floors, @width, @nb_rounds, @exit_floor, @exit_pos, @nb_total_clones,
 @nb_additional_elevators, @nb_elevators = gets.split(' ').map(&:to_i)
 
-elevators = []
-@nb_elevators.times do
-  # floor + position of the elevator
-  elevators << gets.split(' ').map(&:to_i)
+elevators = @nb_elevators.times.collect do
+  # floor and position of the elevator
+  gets.split(' ').map(&:to_i)
 end
 
 loop do
@@ -57,21 +55,20 @@ loop do
   clone_floor, clone_pos, direction = gets.split(' ')
   clone_floor, clone_pos = clone_floor.to_i, clone_pos.to_i
 
-  block = elevators.find { |elevator| elevator.first == clone_floor }&.last ||
-          @exit_pos
+  # position where the leader should BLOCK
+  elevator_position = elevators.find { |elevator| elevator.first == clone_floor }&.last
+  block = elevator_position || @exit_pos
 
   # if leading clone reaches the start or the end of the floor
   # or if clone is between an elevator / the exit and the start / the end of the floor
-  # then block leading clone, else let him walk
-  action = if clone_pos.zero? || clone_pos == @width - 1 ||
-              (direction == 'LEFT' && clone_pos < block) ||
-              (direction == 'RIGHT' && clone_pos > block)
-             'BLOCK'
-           else
-             'WAIT'
-           end
-
-  puts action
+  # then block leading clone
+  if clone_pos.zero? || clone_pos == @width - 1 ||
+     (direction == 'LEFT' && clone_pos < block) ||
+     (direction == 'RIGHT' && clone_pos > block)
+    puts 'BLOCK'
+  else
+    puts 'WAIT'
+  end
 end
 ```
 

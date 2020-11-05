@@ -34,7 +34,6 @@ A single line with 2 integers `X` `Y` separated by a space character. (`X`, `Y`)
 ### Ruby
 
 ```ruby
-STDOUT.sync = true
 w, h = gets.split(' ').map(&:to_i) # width and height of the building
 n = gets.to_i # maximum number of turns before game over (unused => specs input)
 x, y = gets.split(' ').map(&:to_i) # current position

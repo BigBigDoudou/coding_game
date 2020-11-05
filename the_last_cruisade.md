@@ -24,7 +24,6 @@ Indy will then move from the current room to the next according to the shape of 
 ### ruby
 
 ```ruby
-STDOUT.sync = true
 @w, @h = gets.split(' ').map(&:to_i)
 @rooms = []
 @h.times { @rooms << gets.chomp.split(' ').map(&:to_i) }

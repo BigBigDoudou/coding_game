@@ -17,7 +17,7 @@ You lose if: You give an incorrect neighbor for a node ; You give the neighbors 
 @height = gets.to_i # number of cells on the Y axis
 
 lines = []
-@height.times do { lines << gets.chomp } # width characters, each either 0 or .
+@height.times { lines << gets.chomp } # width characters, each either 0 or .
 
 @nodes = []
 lines.each_with_index do |line, y|
@@ -57,7 +57,7 @@ end
 @height = gets.to_i # the number of cells on the Y axis
 
 lines = []
-@height.times do { lines << gets.chomp } # width characters, each either 0 or .
+@height.times { lines << gets.chomp } # width characters, each either 0 or .
 
 class Node
   @@nodes = []

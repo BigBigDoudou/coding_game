@@ -25,8 +25,6 @@ Maze format // A maze in ASCII format is provided as input. The character # repr
 ### ruby
 
 ```ruby
-STDOUT.sync = true
-
 # height and width of the labyrinth and time before alarm is triggered
 @height, @width, @countdown = gets.split(' ').map(&:to_i)
 @labyrinth = '' # labyrinth represented as a serial

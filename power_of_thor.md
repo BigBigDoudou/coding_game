@@ -13,7 +13,6 @@ At the end of the game turn, you must output the direction in which you want Tho
 ### ruby
 
 ```ruby
-STDOUT.sync = true
 # light_x: the X position of the light of power
 # light_y: the Y position of the light of power
 # initial_tx: Thor's starting X position
