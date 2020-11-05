@@ -10,61 +10,55 @@ You lose if: You give an incorrect neighbor for a node ; You give the neighbors 
 
 ---
 
-### ruby (1)
+### ruby
 
 ```ruby
 @width = gets.to_i # number of cells on the X axis
 @height = gets.to_i # number of cells on the Y axis
 
-lines = []
-@height.times { lines << gets.chomp } # width characters, each either 0 or .
+lines = @height.times.collect { gets.chomp } # width characters, each either 0 or .
 
-@nodes = []
-lines.each_with_index do |line, y|
-  line.chars.each_with_index do |value, x|
+@nodes = lines.map.with_index do |line, y|
+  line.chars.map.with_index do |value, x|
     # add coordinates x and y unless there is no node (input is .)
-    @nodes << [x, y] unless value == '.'
-  end
-end
+    [x, y] unless value == '.'
+  end.compact
+end.flatten(1)
 
-# find next node on the right
-def right_node(coordinates)
-  @nodes
-    .select { |node| node[1] == coordinates[1] } # nodes on the same line (y)
-    .sort_by { |node| node[0] } # sort from left to right (by x)
-    .find { |node| node[0] > coordinates[0] } # take first node found (or return nil)
-end
-
-# find next node on the bottom
-def bottom_node(coordinates)
-  @nodes
-    .select { |node| node[0] == coordinates[0] } # nodes on the same column (x)
-    .sort_by { |node| node[1] } # sort from top to bottom (by y)
-    .find { |node| node[1] > coordinates[1] } # take first node found (or return nil)
+# find next node on the right or the bottom, depending on the axe
+def next_node(this, axe)
+  x = (1 - axe).abs # 0 or 1
+  y = (0 - axe).abs # 1 or 0
+  node = @nodes
+    .select { |node| node[x] == this[x] } # nodes on the same line or column (y or x)
+    .sort_by { |node| node[y] } # sort from left to right or top to bottom (by x or y)
+    .find { |node| node[y] > this[y] } # take first node found (or return nil)
+  node || [-1, -1] # return [-1, -1] if no node is found
 end
 
 @nodes.each do |node|
-  right = right_node(node) || [-1, -1] # return [-1, -1] if right_node return nil
-  bottom = bottom_node(node) || [-1, -1] # return [-1, -1] if bottom_node return nil
+  right, bottom = [0, 1].map { |axe| next_node(node, axe) }
   puts "#{node[0]} #{node[1]} #{right[0]} #{right[1]} #{bottom[0]} #{bottom[1]}"
 end
 ```
 
-### ruby (2)
+### ruby - with OOP
 
 ```ruby
 @width = gets.to_i # the number of cells on the X axis
 @height = gets.to_i # the number of cells on the Y axis
 
-lines = []
-@height.times { lines << gets.chomp } # width characters, each either 0 or .
+lines = @height.times.collect { gets.chomp } # width characters, each either 0 or .
 
 class Node
   @@nodes = []
   attr_reader :x, :y
+  def self.create(x, y)
+    @@nodes << new(x, y)
+  end
+
   def initialize(x, y)
     @x, @y = x, y
-    @@nodes << self
   end
 
   def self.coordinates
@@ -72,29 +66,29 @@ class Node
   end
 
   def coordinates
-    right = self.right ? "#{self.right.x} #{self.right.y}" : '-1 -1'
-    bottom = self.bottom ? "#{self.bottom.x} #{self.bottom.y}" : '-1 -1'
-    puts "#{@x} #{@y} #{right} #{bottom}"
+    r = right ? "#{right.x} #{right.y}" : '-1 -1'
+    b = bottom ? "#{bottom.x} #{bottom.y}" : '-1 -1'
+    puts "#{x} #{y} #{r} #{b}"
   end
 
   def right
-    @@nodes
-      .select { |node| node.y == @y }
-      .sort_by(&:x)
-      .find { |node| node.x > @x }
+		@@nodes
+			.select { |node| node.y == y }
+			.sort_by(&:x)
+			.find { |node| node.x > x }
   end
 
   def bottom
-    @@nodes
-      .select { |node| node.x == @x }
-      .sort_by(&:x)
-      .find { |node| node.y > @y }
+		@@nodes
+			.select { |node| node.x == x }
+			.sort_by(&:y)
+			.find { |node| node.y > y }
   end
 end
 
 lines.each_with_index do |line, y|
   line.chars.each_with_index do |value, x|
-    Node.new(x, y) unless value == '.'
+    Node.create(x, y) unless value == '.'
   end
 end
 

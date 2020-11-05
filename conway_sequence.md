@@ -23,30 +23,44 @@ Example with 1 as original number and 6 as line to put:
 @r = gets.to_i # original number
 @l = gets.to_i # row to display
 
-# define line following another line
-def next_line(line)
-  count = 1
-  next_line = []
-  line.each_with_index do |number, index|
-    # if succession of similar numbers
-    if line[index + 1] == number
-      count += 1 # update count of similar numbers
-      next
-    end
-    # ...else
-    next_line << count << number # add count and number to next_line
-    count = 1 # restart count
-  end
-  next_line
+# Define line following another line
+def next_line(line, acc = [])
+  # take the first number in the line
+  current = line.first
+  # find the index of the first different number
+  # if there is not, all numbers are the same so count = line.length
+  count = line.index { |number| number != current } || line.length
+  # add the count then the current number to the accumulator
+  acc << count << current
+  # if all the numbers are the same, return the accumulator
+  return acc if count == line.length
+
+  # continue to investigate following numbers
+  next_line(line[count..-1], acc)
 end
 
-# generate conway sequence and return the last line
+# Generate conway sequence and return the last line
 def conway_sequence(line, size, count)
   # return line if row to display is reached
   return line.join(' ') if count == size
 
   # find next line and call method recursively
-  next_line = next_line(line)
+  conway_sequence(next_line(line), size, count + 1)
+end
+
+puts conway_sequence([@r], @l, 1)
+```
+
+### ruby - with #chunks
+
+```ruby
+@r = gets.to_i # original number
+@l = gets.to_i # row to display
+
+def conway_sequence(line, size, count)
+  return line.join(' ') if count == size
+
+  next_line = line.chunk { |n| n } .map { |c| [c[1].count, c[0]] } .flatten
   conway_sequence(next_line, size, count + 1)
 end
 
