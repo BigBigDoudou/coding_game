@@ -35,7 +35,7 @@ def next_line(line, acc = [])
   # if all the numbers are the same, return the accumulator
   return acc if count == line.length
 
-  # continue to investigate following numbers
+  # investigate following numbers
   next_line(line[count..-1], acc)
 end
 
@@ -65,4 +65,65 @@ def conway_sequence(line, size, count)
 end
 
 puts conway_sequence([@r], @l, 1)
+```
+
+### go
+
+```go
+package main
+
+import(
+    "fmt"
+    "strconv"
+)
+
+// Define line following another line
+func nextLine(line []int, acc []int) []int {
+  // take the first number in the line
+  current := line[0]
+  // find the index of the first different number
+  // if there is not, all numbers are the same so count is line length
+  count := len(line)
+  for i, v := range line {
+      if v != current {
+          count = i
+          break
+      }
+  }
+  // add the count then the current number to the accumulator
+  acc = append(acc, count, current)
+  // if all the numbers are the same, return the accumulator
+  if count == len(line) {
+      return acc
+  }
+
+  // investigate following numbers
+  return nextLine(line[count:], acc)
+}
+
+//Generate conway sequence and return the last line
+func conwaySequence(line []int, size int, count int) string {
+    // return line if row to display is reached
+    if count == size {
+        res := ""
+        for _, v := range line {
+            res = res + " " + strconv.Itoa(v)
+        }
+        return res[1:] // remove first space char
+    }
+
+    // find next line and call method recursively
+    nextLine := nextLine(line, []int{})
+    return conwaySequence(nextLine, size, count + 1)
+}
+
+func main() {
+    var R int
+    fmt.Scan(&R)
+    
+    var L int
+    fmt.Scan(&L)
+
+    fmt.Println(conwaySequence([]int{R}, L, 1))// Write answer to stdout
+}
 ```
