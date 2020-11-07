@@ -43,10 +43,8 @@ When a clone reaches the location of the exit, it is saved and disappears from t
 @nb_floors, @width, @nb_rounds, @exit_floor, @exit_pos, @nb_total_clones,
 @nb_additional_elevators, @nb_elevators = gets.split(' ').map(&:to_i)
 
-elevators = @nb_elevators.times.collect do
-  # floor and position of the elevator
-  gets.split(' ').map(&:to_i)
-end
+# floor and position of the elevator
+elevators = @nb_elevators.times.map { gets.split(' ').map(&:to_i) }
 
 loop do
   # clone_floor: floor where the leading clone is (input)

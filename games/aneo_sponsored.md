@@ -18,10 +18,7 @@ Your vehicle enters the zone directly at the speed programmed on the cruise cont
 @max_kmh_speed = gets.to_i
 @light_count = gets.to_i
 
-@lights = []
-@light_count.times do
-  @lights << gets.split(' ').collect(&:to_i)
-end
+@lights = @light_count.times.map { gets.split(' ').map(&:to_i) }
 
 # Returns true if lights will be all green at the given speed
 def all_green?(kmh_speed)
