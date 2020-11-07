@@ -127,3 +127,36 @@ func main() {
     fmt.Println(conwaySequence([]int{R}, L, 1))// Write answer to stdout
 }
 ```
+
+### javascript
+
+```javascript
+// Define line following another line
+const nextLine = (line, acc = []) => {
+  // find the index of the first number diffrent than the first one
+  const diffIndex = line.findIndex((v) => v !== line[0]) // -1 if not found
+  // if there is not (-1), all numbers are the same so count is line length
+  const count = diffIndex === -1 ? line.length : diffIndex
+  // add the count then the first number to the accumulator
+  acc.push(count, line[0])
+  return count === line.length
+    // return the accumulator
+    ? acc
+    // investigate following numbers
+    : nextLine(line.slice(count), acc)
+}
+
+// Generate conway sequence and return the last line
+const conwaySequence = (line, size, count = 1) => (
+  count === size
+  // return line as string
+    ? line.join(' ')
+    // find next line and call method recursively
+    : conwaySequence(nextLine(line), size, count + 1)
+)
+
+const R = parseInt(readline())
+const L = parseInt(readline())
+
+console.log(conwaySequence([R], L))
+```

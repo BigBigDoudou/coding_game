@@ -1,3 +1,10 @@
 temp.go
 temp.js
 temp.ruby
+
+package.json
+package-lock.json
+.rubocop.yml
+.eslintrc.js
+
+node_modules/
