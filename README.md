@@ -2,6 +2,8 @@
 
 Challenges done with Ruby, Go and/or Javascript on [codingame.com](https://www.codingame.com/home) ([profil](https://www.codingame.com/profile/2eb82043e576d45d990da7610b3c68d34129103)).
 
+You won't find code golf here, the purpose is to suggest a readable and evolving solution, not the shortest one :)
+
 |                                                         | ruby | ·go· | ·js· |
 |---------------------------------------------------------|:----:|:----:|:----:|
 | [conway_sequence](games/conway_sequence.md)             | x    | x    | x    |
@@ -13,7 +15,7 @@ Challenges done with Ruby, Go and/or Javascript on [codingame.com](https://www.c
 | [skynet_revolution](games/skynet_revolution.md)         | x    | x    |      |
 | [the_labyrinth](games/the_labyrinth.md)                 | x    |      |      |
 | [telephone_numbers](games/telephone_numbers.md)         | x    |      |      |
-| [stock_exchange_losses](games/stock_exchange_losses.md) | x    |      |      |
+| [stock_exchange_losses](games/stock_exchange_losses.md) | x    | x    | x    |
 | [the_last_cruisade](games/the_last_cruisade.md)         | x    |      |      |
 | [power_of_thor](games/power_of_thor.md)                 | x    |      |      |
 | [temperatures](games/temperatures.md)                   | x    |      |      |
