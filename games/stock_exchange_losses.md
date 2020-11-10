@@ -6,10 +6,41 @@ A finance company is carrying out a study on the worst stock investments and wou
 
 ---
 
-### ruby
+## ruby
+
+**Solution 1** -> Iterate on each number and update current value and max delta where necessary.
 
 ```ruby
-@n = gets.to_i
+gets.to_i # the count of inputs is unused
+
+# <current> is the compared number
+#   on first iteration, it is set to the given number
+#   then it is replaced each time a greater number is found
+current = 0
+
+# <delta> is the maximum delta found (negatively)
+#   it is initialized to 0
+#   then it is replaced each time a greatest delta is found
+delta = 0
+
+# for each given number (stock value)
+numbers = gets.split(' ').map(&:to_i)
+numbers.each do |number|
+    # if the delta between number and current is less than the one ever found
+    #   then replace it
+    delta = [delta, number - current].min
+    # if the number is greater than the current
+    #   then replace it
+    current = [current, number].max
+end
+
+puts delta
+```
+
+**Solution 2** -> Use recursion to check each period between recoveries.
+
+```ruby
+gets.to_i # the count of inputs is unused
 @inputs = gets.split(' ').map(&:to_i)
 
 def max_delta(inputs, current_max = 0)
@@ -30,7 +61,68 @@ end
 puts max_delta(@inputs) * -1
 ```
 
-### go
+## go
+
+**Solution 1** -> Iterate on each number and update current value and max delta where necessary.
+
+```go
+package main
+
+import(
+    "fmt"
+    "bufio"
+    "os"
+    "strings"
+    "strconv"
+)
+
+func min(x, y int64) int64 {
+    if x < y {
+        return x
+    }
+    return y
+}
+
+func max(x, y int64) int64 {
+    if x > y {
+        return x
+    }
+    return y
+}
+
+func main() {
+    scanner := bufio.NewScanner(os.Stdin)
+    scanner.Buffer(make([]byte, 1000000), 1000000)
+	scanner.Scan() // run unused scanner
+	scanner.Scan() // run unused scanner
+
+    // <current> is the compared number
+    //   on first iteration, it is set to the given number
+    //   then it is replaced each time a greater number is found
+    current := int64(0)
+
+    // <delta> is the maximum delta found (negatively)
+    //   it is initialized to 0
+    //   then it is replaced each time a greatest delta is found
+    delta := int64(0)
+
+    str_numbers := strings.Split(scanner.Text()," ")
+    for _, str_number := range str_numbers {
+        // convert number to int64
+        number, _ := strconv.ParseInt(str_number, 10, 32)
+        // if the delta between number and current is less than the one ever found
+        //   then replace it
+        delta = min(delta, number - current)
+        // if the number is greater than the current
+        //   then replace it
+        current = max(current, number)
+    }
+
+    fmt.Println(delta)
+}
+```
+
+**Solution 2** -> Use recursion to check each period between recoveries.
 
 ```go
 package main
@@ -97,10 +189,41 @@ func main() {
 }
 ```
 
-### javascript
+## javascript
+
+**Solution 1** -> Iterate on each number and update current value and max delta where necessary.
 
 ```javascript
-const _ = parseInt(readline())
+readline() // the count of inputs is unused
+
+// <current> is the compared number
+//   on first iteration, it is set to the given number
+//   then it is replaced each time a greater number is found
+let current = 0
+
+// <delta> is the maximum delta found (negatively)
+//   it is initialized to 0
+//   then it is replaced each time a greatest delta is found
+let delta = 0
+
+// for each given number (stock value)
+const numbers = readline().split(' ')
+numbers.forEach((number) => {
+	// if the delta between number and current is less than the one ever found
+	//   then replace it
+	delta = Math.min(delta, number - current)
+	// if the number is greater than the current
+	//   then replace it
+	current = Math.max(current, number)
+})
+
+console.log(delta)
+```
+
+**Solution 2** -> Use recursion to check each period between recoveries.
+
+```javascript
+readline() // the count of inputs is unused
 const inputs = readline().split(' ').map((input) => parseInt(input))
 
 const maxDelta = (numbers, currentMax = 0) => {

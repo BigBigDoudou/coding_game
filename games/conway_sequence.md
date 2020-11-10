@@ -17,7 +17,9 @@ Example with 1 as original number and 6 as line to put:
 
 ---
 
-### ruby
+## ruby
+
+**Solution 1** -> Use recursion
 
 ```ruby
 @r = gets.to_i # original number
@@ -51,7 +53,13 @@ end
 puts conway_sequence([@r], @l, 1)
 ```
 
-### ruby - with #chunks
+**Solution 2** -> Use `#chunk`
+
+> Enumerates over the items, chunking them together based on the return value of the block. Consecutive elements which return the same block value are chunked together.
+>
+> -- <cite>[API dock /ruby/Enumerable/chunk](https://apidock.com/ruby/Enumerable/chunk)</cite>
+
+
 
 ```ruby
 @r = gets.to_i # original number
@@ -60,14 +68,14 @@ puts conway_sequence([@r], @l, 1)
 def conway_sequence(line, size, count)
   return line.join(' ') if count == size
 
-  next_line = line.chunk { |n| n } .map { |c| [c[1].count, c[0]] } .flatten
+  next_line = line.chunk { |n| n } .map { |c| [c[1].count, c[0]] }.flatten
   conway_sequence(next_line, size, count + 1)
 end
 
 puts conway_sequence([@r], @l, 1)
 ```
 
-### go
+## go
 
 ```go
 package main
@@ -128,7 +136,7 @@ func main() {
 }
 ```
 
-### javascript
+## javascript
 
 ```javascript
 // Define line following another line

@@ -10,7 +10,7 @@ You lose if: You give an incorrect neighbor for a node ; You give the neighbors 
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 @width = gets.to_i # number of cells on the X axis
@@ -42,7 +42,7 @@ end
 end
 ```
 
-### ruby - with OOP
+## ruby - with OOP
 
 ```ruby
 @width = gets.to_i # the number of cells on the X axis
@@ -95,7 +95,7 @@ end
 Node.coordinates
 ```
 
-### go
+## go
 
 ```go
 package main

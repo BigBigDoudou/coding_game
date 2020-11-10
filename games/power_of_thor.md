@@ -10,7 +10,7 @@ At the end of the game turn, you must output the direction in which you want Tho
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 # light_x: the X position of the light of power

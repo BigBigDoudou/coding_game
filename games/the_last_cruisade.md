@@ -21,7 +21,7 @@ Indy will then move from the current room to the next according to the shape of 
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 @w, @h = gets.split(' ').map(&:to_i)

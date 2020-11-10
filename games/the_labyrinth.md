@@ -22,7 +22,7 @@ Maze format // A maze in ASCII format is provided as input. The character # repr
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 # height and width of the labyrinth and time before alarm is triggered

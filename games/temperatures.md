@@ -6,7 +6,7 @@ Write a program that prints the temperature closest to 0 among input data. If tw
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 @n = gets.to_i # number of temperatures to analyse (unused => specs input)

@@ -22,7 +22,7 @@ When a player wins a battle, they put back the cards at the bottom of their deck
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 decks = [[], []]
@@ -82,7 +82,7 @@ result =
 puts result
 ```
 
-### go
+## go
 
 ```go
 package main

@@ -29,7 +29,7 @@ When a clone reaches the location of the exit, it is saved and disappears from t
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 # nb_floors: number of floors (input)
@@ -70,7 +70,7 @@ loop do
 end
 ```
 
-### go
+## go
 
 ```go
 package main
@@ -127,7 +127,7 @@ func main() {
 }
 ```
 
-### javascript
+## javascript
 
 ```javascript
 var inputs = readline().split(' ');

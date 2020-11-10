@@ -22,7 +22,7 @@ Then the Skynet agent moves from one Node to another accessible Node.
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 # n: total number of nodes in the level including the gateways
@@ -44,7 +44,7 @@ loop do
 end
 ```
 
-### go
+## go
 
 ```go
 package main

@@ -31,7 +31,7 @@ A single line with 2 integers `X` `Y` separated by a space character. (`X`, `Y`)
 
 ---
 
-### Ruby
+## Ruby
 
 ```ruby
 w, h = gets.split(' ').map(&:to_i) # width and height of the building
@@ -57,7 +57,7 @@ loop do
 end
 ```
 
-### Go
+## Go
 
 ```go
 package main
@@ -135,7 +135,7 @@ func main() {
 }
 ```
 
-### Javascript
+## Javascript
 
 ```javascript
 const [w, h] = readline().split(' ').map(input => parseInt(input)); // width and height

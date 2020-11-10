@@ -16,7 +16,7 @@ Your task is to write a program that displays the number of items (which are num
 
 ---
 
-### rules
+## rules
 
 ```ruby
 # NOTE: the goal is not to draw the tree but to find the number of serials needed.

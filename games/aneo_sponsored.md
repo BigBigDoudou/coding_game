@@ -12,7 +12,7 @@ Your vehicle enters the zone directly at the speed programmed on the cruise cont
 
 ---
 
-### ruby
+## ruby
 
 ```ruby
 @max_kmh_speed = gets.to_i
@@ -40,7 +40,7 @@ end
 puts best_speed(@max_kmh_speed)
 ```
 
-### go
+## go
 
 ```go
 package main
