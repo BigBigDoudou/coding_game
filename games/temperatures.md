@@ -9,7 +9,7 @@ Write a program that prints the temperature closest to 0 among input data. If tw
 ## ruby
 
 ```ruby
-@n = gets.to_i # number of temperatures to analyse (unused => specs input)
+_ = gets.to_i # number of temperatures to analyse (unused)
 # output min value after comparing them with absolute and choosing positive over negative if equal
 puts gets.split(' ').map(&:to_i).min_by { |t| [t.abs, -t] } || 0
 ```

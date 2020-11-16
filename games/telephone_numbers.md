@@ -19,15 +19,15 @@ Your task is to write a program that displays the number of items (which are num
 ## rules
 
 ```ruby
-# NOTE: the goal is not to draw the tree but to find the number of serials needed.
-
-n = gets.to_i # numer of telephone numbers
 substr = {}
 
+n = gets.to_i # count of telephone numbers
 n.times do
   phone = gets.chomp
-  # if serial already exists (is equal to 1) there is no effect
-  phone.size.times { |i| substr[phone[0..i]] = 1 }
+  # split the number in consecutive subsequences
+  # for example 0467123456 is splitted in: 0, 04, 046, ..., 0467123456
+  # then set the value for this subsequence to true (use memoization to speed up process)
+  phone.size.times { |i| substr[phone[0..i]] ||= true }
 end
 
 puts substr.length

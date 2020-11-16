@@ -8,13 +8,14 @@ You won't find code golf here, the purpose is to suggest readable and evolving s
 |---------------------------------------------------------|:----:|:----:|:----:|
 | [conway_sequence](games/conway_sequence.md)             | x    | x    | x    |
 | [shadows_of_the_knight](games/shadows_of_the_knight.md) | x    | x    | x    |
+| [coders_strike_back](games/coders_strike_back.md) | x   | x    |      |      |
+| [the_labyrinth](games/the_labyrinth.md)                 | x    |      |      |
 | [dont_panic](games/dont_panic.md)                       | x    | x    | x    |
 | [stock_exchange_losses](games/stock_exchange_losses.md) | x    | x    | x    |
 | [war](games/war.md)                                     | x    | x    |      |
 | [there_is_no_spoon](games/there_is_no_spoon.md)         | x    | x    |      |
 | [aneo_sponsored](games/aneo_sponsored.md)               | x    | x    |      |
 | [skynet_revolution](games/skynet_revolution.md)         | x    | x    |      |
-| [the_labyrinth](games/the_labyrinth.md)                 | x    |      |      |
 | [telephone_numbers](games/telephone_numbers.md)         | x    |      |      |
 | [the_last_cruisade](games/the_last_cruisade.md)         | x    |      |      |
 | [power_of_thor](games/power_of_thor.md)                 | x    |      |      |

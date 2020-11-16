@@ -24,35 +24,32 @@ Indy will then move from the current room to the next according to the shape of 
 ## ruby
 
 ```ruby
-@w, @h = gets.split(' ').map(&:to_i)
-@rooms = []
-@h.times { @rooms << gets.chomp.split(' ').map(&:to_i) }
-@ex = gets.to_i
-@x, @y, @position = nil
+_width, height = gets.split(' ') # width is unused
+ROOMS = height.to_i.times.map { gets.chomp.split(' ').map(&:to_i) }
+_exit = gets # exit is unused
+
 # pattern numbers that send to left or right depending where Indy comes from
-@left = [[2, 'RIGHT'], [4, 'TOP'], [6, 'RIGHT'], [10, 'TOP']]
-@right = [[2, 'LEFT'], [5, 'TOP'], [6, 'LEFT'], [11, 'TOP']]
+LEFT = [[2, 'RIGHT'], [4, 'TOP'], [6, 'RIGHT'], [10, 'TOP']]
+RIGHT = [[2, 'LEFT'], [5, 'TOP'], [6, 'LEFT'], [11, 'TOP']]
 
 # define if Indy is coming from a specific side
-def side?(side)
-  side.find { |value| value.first == @rooms[@y][@x] }&.last == @position
+def go?(side, x, y, from)
+  side.find do |value|
+    value.first == ROOMS[y][x]
+  end&.last == from
 end
 
 # define the next position depending on the current room's pattern and entrance
-def move
-  if side?(@left)
-    "#{@x - 1} #{@y}"
-  elsif side?(@right)
-    "#{@x + 1} #{@y}"
-  else
-    "#{@x} #{@y + 1}"
-  end
+def move(x, y, from)
+  return "#{x - 1} #{y}" if go?(LEFT, x, y, from)
+  return "#{x + 1} #{y}" if go?(RIGHT, x, y, from)
+
+  "#{x} #{y + 1}"
 end
 
 # loop each time Indy enter in a new room and output the next position
 loop do
-  @x, @y, @position = gets.split(' ')
-  @x, @y = @x.to_i, @y.to_i
-  puts move
+  x, y, from = gets.split(' ')
+  puts move(x.to_i, y.to_i, from)
 end
 ```
